@@ -1,4 +1,7 @@
 import React from "react";
+import { Link } from "react-router-dom";
+
+
 
 const PetItem = ({ pet }) => {
   return (
@@ -10,9 +13,9 @@ const PetItem = ({ pet }) => {
         className="w-[200px] rounded-md
       "
       />
-      <button className=" border border-black px-5 py-1 rounded-md hover:bg-[black] hover:text-white">
+      <Link to={`/PetDetail/${pet.id}`} className=" border border-black px-5 py-1 rounded-md hover:bg-[black] hover:text-white">
         View
-      </button>
+      </Link>
     </div>
   );
 };

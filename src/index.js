@@ -3,11 +3,46 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import {
+  createBrowserRouter,
+  RouterProvider,
+} from "react-router-dom";
+import Home from './components/Home';
+import PetList from './components/PetList';
+import PetDetail from './components/PetDetail';
+import Modal from './components/Modal';
+
+
+
+const router = createBrowserRouter([
+  {
+    path: "/",
+    // element: <div>Home</div>,
+    element: <Home/>,
+  },
+  {
+    path: "/PetList",
+    element: <PetList/>,
+  },
+  {
+    path: "/PetDetail/:petId",
+    element: <PetDetail/>,
+  },
+  {
+  path: "/Modal",
+  element: <Modal/>,
+  },
+  // {
+  //   path: "/details/:tripId",
+  //   element: <TripDetail/>,
+  // },
+]);
+
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <App />
+     <RouterProvider router={router} />
   </React.StrictMode>
 );
 

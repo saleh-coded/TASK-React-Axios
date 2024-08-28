@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import Input from "./Input";
+import { creatPet } from "../API/pets";
 
 const Modal = ({ show, setShowModal }) => {
   const [name, setName] = useState("");
@@ -7,6 +8,12 @@ const Modal = ({ show, setShowModal }) => {
   const [image, setImage] = useState("");
   const [available, setAvailable] = useState(0);
   if (!show) return "";
+
+  const handelCreatePet = async () => {
+    const res = await creatPet(name, image, type, available);
+    console.log(res);
+  };
+
   return (
     <div
       className="inset-0 fixed  flex justify-center items-center flex-col z-20 overflow-hidden 
@@ -47,7 +54,7 @@ const Modal = ({ show, setShowModal }) => {
           }}
         />
 
-        <button className="w-[70px] border border-black rounded-md ml-auto mr-5 hover:bg-green-400">
+        <button onClick={handelCreatePet} className="w-[70px] border border-black rounded-md ml-auto mr-5 hover:bg-green-400">
           Submit
         </button>
       </div>
