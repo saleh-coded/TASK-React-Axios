@@ -1,36 +1,37 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
-import {
-  createBrowserRouter,
-  RouterProvider,
-} from "react-router-dom";
-import Home from './components/Home';
-import PetList from './components/PetList';
-import PetDetail from './components/PetDetail';
-import Modal from './components/Modal';
+import React from "react";
+import ReactDOM from "react-dom/client";
+import "./index.css";
+import App from "./App";
+import reportWebVitals from "./reportWebVitals";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import Home from "./components/Home";
+import PetList from "./components/PetList";
+import PetDetail from "./components/PetDetail";
+import Modal from "./components/Modal";
+import { QueryClientProvider, QueryClient } from "@tanstack/react-query";
 
-
-
+const queryClient = new QueryClient(); //big boos
 const router = createBrowserRouter([
   {
     path: "/",
     // element: <div>Home</div>,
-    element: <Home/>,
+    element: <Home />,
   },
   {
     path: "/PetList",
-    element: <PetList/>,
+    element: <PetList />,
   },
   {
-    path: "/PetDetail/:petId",
-    element: <PetDetail/>,
+    path: "/PetDetail/:id",
+    element: <PetDetail />,
   },
+  // {
+  //   path: "/PetDetail/:petId",
+  //   element: <PetDetail />,
+  // },
   {
-  path: "/Modal",
-  element: <Modal/>,
+    path: "/Modal",
+    element: <Modal />,
   },
   // {
   //   path: "/details/:tripId",
@@ -38,11 +39,12 @@ const router = createBrowserRouter([
   // },
 ]);
 
-
-const root = ReactDOM.createRoot(document.getElementById('root'));
+const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-     <RouterProvider router={router} />
+    <QueryClientProvider client={queryClient}>
+      <RouterProvider router={router} />
+    </QueryClientProvider>
   </React.StrictMode>
 );
 
